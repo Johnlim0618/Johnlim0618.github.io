@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows Event Investigation Practice | John Lim</title>
-  <meta name="description" content="Windows Event Investigation Practice project page for John Lim." />
+  <meta name="description" content="Windows Event Investigation Practice by John Lim" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,21 +12,85 @@
 </head>
 <body>
   <div class="page-glow"></div>
+
   <div class="detail-wrap">
     <a class="back-link" href="index.html#projects">← Back to Projects</a>
+
     <article class="detail-card">
       <h1>Windows Event Investigation Practice</h1>
-      <p>This page includes a small PowerShell script that filters common Windows Security Event IDs useful for beginner investigation practice.</p>
-      <h3>What this project shows</h3>
+
+      <p>
+        This project focused on building stronger investigation habits around common Windows security events.
+        I used this work to improve my understanding of how authentication activity, PowerShell execution,
+        and privileged group changes appear in logs and how an analyst would begin triaging them.
+      </p>
+
+      <h3>Overview</h3>
+      <p>
+        Windows event logs are one of the most important sources of visibility in security operations.
+        I used this project to study high-value events like failed logons, account changes, and PowerShell activity
+        so I could better understand what to look for, what context matters, and how one event can lead into a broader investigation.
+      </p>
+
+      <h3>Objectives</h3>
       <ul>
-        <li>Authentication event review</li><li>Privileged group change visibility</li><li>PowerShell-friendly log filtering</li>
+        <li>Improve familiarity with common Windows security event IDs</li>
+        <li>Practice investigation steps for suspicious authentication and account-related activity</li>
+        <li>Understand how context changes the meaning of an event</li>
       </ul>
-      <h3>Example artifact</h3>
+
+      <h3>Tools Used</h3>
+      <ul>
+        <li>Windows Event Viewer</li>
+        <li>Windows Security Event Logs</li>
+        <li>PowerShell</li>
+        <li>Splunk</li>
+        <li>MITRE ATT&amp;CK concepts</li>
+      </ul>
+
+      <h3>Environment</h3>
+      <p>
+        I used a Windows-based lab environment where security events could be generated, reviewed, and searched.
+        The goal was to build comfort around interpreting Windows telemetry in a way that supports investigation,
+        detection validation, and escalation decisions.
+      </p>
+
+      <h3>What I Did</h3>
+      <ul>
+        <li>Reviewed Event ID 4625 for failed logon activity and looked for repeated authentication failures</li>
+        <li>Studied Event ID 4732 to understand how privileged group membership changes appear in the Security log</li>
+        <li>Reviewed PowerShell-related logging to better understand script execution visibility and analyst context</li>
+        <li>Used those events to practice basic triage steps and think through how each event might fit into a larger attack chain</li>
+      </ul>
+
+      <h3>Key Findings</h3>
+      <ul>
+        <li>A single Windows event is rarely enough on its own and needs supporting context</li>
+        <li>Authentication events become much more meaningful when tied to time, host, and user behavior</li>
+        <li>Privileged group changes are especially important because they can signal persistence or privilege escalation</li>
+        <li>PowerShell logging can provide strong visibility, but only if logging is configured and collected properly</li>
+      </ul>
+
+      <h3>Example Artifact</h3>
       <pre><code>$ids = 4624,4625,4732
 Get-WinEvent -LogName Security |
 Where-Object { $ids -contains $_.Id } |
 Select-Object TimeCreated, Id, ProviderName, Message |
 Format-Table -AutoSize</code></pre>
+
+      <h3>What I Learned</h3>
+      <p>
+        This project helped me get more comfortable moving from “I know this event ID exists” to
+        “I know why this matters, what context I need, and what I would investigate next.”
+        It also reinforced that event triage is as much about narrowing possibilities as it is about identifying obvious threats.
+      </p>
+
+      <h3>Next Improvements</h3>
+      <ul>
+        <li>Add screenshots of event logs and related Splunk searches</li>
+        <li>Document step-by-step triage examples for specific event IDs</li>
+        <li>Expand coverage to include more PowerShell and account-management events</li>
+      </ul>
     </article>
   </div>
 </body>

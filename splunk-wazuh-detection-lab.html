@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Splunk + Wazuh Detection Lab | John Lim</title>
-  <meta name="description" content="Splunk + Wazuh Detection Lab project page for John Lim." />
+  <meta name="description" content="Splunk + Wazuh Detection Lab by John Lim" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,16 +12,66 @@
 </head>
 <body>
   <div class="page-glow"></div>
+
   <div class="detail-wrap">
     <a class="back-link" href="index.html#projects">← Back to Projects</a>
+
     <article class="detail-card">
       <h1>Splunk + Wazuh Detection Lab</h1>
-      <p>This project page shows a sample Splunk search that can be used to identify repeated failed logons followed by a successful authentication from the same user.</p>
-      <h3>What this project shows</h3>
+
+      <p>
+        I built this lab to get hands-on practice with security monitoring, detection validation,
+        and log-based investigation in a small SOC-style environment. The goal was to centralize
+        Windows telemetry, review alerts, and better understand how suspicious activity appears
+        across SIEM and endpoint-focused tooling.
+      </p>
+
+      <h3>Overview</h3>
+      <p>
+        This project focused on building a practical home lab using Splunk and Wazuh with Windows-based telemetry.
+        I wanted a space where I could test detections, analyze event logs, and document the investigation process
+        the way an entry-level analyst would in a real environment.
+      </p>
+
+      <h3>Objectives</h3>
       <ul>
-        <li>Windows log review and basic correlation logic</li><li>Authentication triage workflow</li><li>SIEM-oriented thinking around suspicious login patterns</li>
+        <li>Centralize Windows security-related logs for investigation practice</li>
+        <li>Understand how SIEM visibility supports triage and incident analysis</li>
+        <li>Validate that suspicious activity can be observed and investigated properly</li>
       </ul>
-      <h3>Example artifact</h3>
+
+      <h3>Tools Used</h3>
+      <ul>
+        <li>Splunk</li>
+        <li>Wazuh</li>
+        <li>Windows Event Logs</li>
+        <li>Sysmon / WEF concepts</li>
+        <li>PowerShell</li>
+      </ul>
+
+      <h3>Environment</h3>
+      <p>
+        The lab was built around Windows systems and centralized visibility tooling. I used the environment
+        to monitor authentication events, PowerShell-related activity, and privilege-relevant telemetry while
+        comparing raw logs against what actually surfaced inside the SIEM workflow.
+      </p>
+
+      <h3>What I Did</h3>
+      <ul>
+        <li>Configured a lab environment to collect and review Windows telemetry</li>
+        <li>Used Splunk searches to identify patterns like repeated failed logons followed by success</li>
+        <li>Reviewed Wazuh alerts to understand how host-based detections and event visibility overlap</li>
+        <li>Documented how logs moved from raw telemetry into usable detection and triage workflows</li>
+      </ul>
+
+      <h3>Key Findings</h3>
+      <ul>
+        <li>Good visibility depends on both log collection and log quality</li>
+        <li>Authentication activity is much easier to investigate when events are centralized and searchable</li>
+        <li>Signal quality improves when detections are paired with context, not just single events</li>
+      </ul>
+
+      <h3>Example Artifact</h3>
       <pre><code>index=wineventlog (EventCode=4625 OR EventCode=4624)
 | eval user=coalesce(TargetUserName, Account_Name)
 | stats count(eval(EventCode=4625)) as failed_count
@@ -31,6 +81,19 @@
         by user host
 | where failed_count >= 5 AND success_count >= 1
 | convert ctime(first_seen) ctime(last_seen)</code></pre>
+
+      <h3>What I Learned</h3>
+      <p>
+        This project helped me understand the difference between simply collecting logs and actually using them
+        for triage. It also showed me how detection logic, event visibility, and analyst context all work together.
+      </p>
+
+      <h3>Next Improvements</h3>
+      <ul>
+        <li>Add screenshots of Splunk searches and Wazuh alerts</li>
+        <li>Expand with more Windows telemetry sources</li>
+        <li>Document additional triage use cases and detection scenarios</li>
+      </ul>
     </article>
   </div>
 </body>

@@ -1,0 +1,1 @@
+Upload all files in this zip to the root of your johnlim0618.github.io repo. No projects folder needed.

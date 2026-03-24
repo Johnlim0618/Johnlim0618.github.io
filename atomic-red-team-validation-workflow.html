@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atomic Red Team Validation Workflow | John Lim</title>
+  <meta name="description" content="Atomic Red Team Validation Workflow project page for John Lim." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow"></div>
+  <div class="detail-wrap">
+    <a class="back-link" href="index.html#projects">← Back to Projects</a>
+    <article class="detail-card">
+      <h1>Atomic Red Team Validation Workflow</h1>
+      <p>This page shows a lightweight validation checklist you can use after running an Atomic test. It helps confirm whether the expected telemetry and detection behavior actually appeared.</p>
+      <h3>What this project shows</h3>
+      <ul>
+        <li>Threat simulation and validation discipline</li><li>Telemetry verification mindset</li><li>Lab evidence collection</li>
+      </ul>
+      <h3>Example artifact</h3>
+      <pre><code>Validation Checklist
+1. Run the Atomic Red Team test safely in the lab
+2. Confirm expected Windows event logs were generated
+3. Check if Sysmon / WEF forwarded the activity
+4. Search Splunk / Wazuh for the related telemetry
+5. Confirm whether an alert triggered
+6. Document gaps, false negatives, and tuning ideas</code></pre>
+    </article>
+  </div>
+</body>
+</html>

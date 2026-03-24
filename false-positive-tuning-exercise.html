@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>False Positive Tuning Exercise | John Lim</title>
+  <meta name="description" content="False Positive Tuning Exercise project page for John Lim." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow"></div>
+  <div class="detail-wrap">
+    <a class="back-link" href="index.html#projects">← Back to Projects</a>
+    <article class="detail-card">
+      <h1>False Positive Tuning Exercise</h1>
+      <p>This page shows a simple triage note format for documenting why an alert looked suspicious, what context was reviewed, and why it was ultimately classified as benign.</p>
+      <h3>What this project shows</h3>
+      <ul>
+        <li>Structured triage documentation</li><li>Context-driven investigation</li><li>Tuning mindset for analysts</li>
+      </ul>
+      <h3>Example artifact</h3>
+      <pre><code>Alert: Suspicious LSASS Access
+Initial reason: Process attempted access pattern associated with credential dumping
+Reviewed:
+- Parent process
+- Signed binary status
+- Host baseline behavior
+- User context
+Conclusion:
+Benign system activity from trusted process path
+Tuning idea:
+Exclude signed trusted process under validated parent/host conditions</code></pre>
+    </article>
+  </div>
+</body>
+</html>

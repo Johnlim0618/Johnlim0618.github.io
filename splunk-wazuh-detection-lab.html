@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Splunk + Wazuh Detection Lab | John Lim</title>
+  <meta name="description" content="Splunk + Wazuh Detection Lab project page for John Lim." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow"></div>
+  <div class="detail-wrap">
+    <a class="back-link" href="index.html#projects">← Back to Projects</a>
+    <article class="detail-card">
+      <h1>Splunk + Wazuh Detection Lab</h1>
+      <p>This project page shows a sample Splunk search that can be used to identify repeated failed logons followed by a successful authentication from the same user.</p>
+      <h3>What this project shows</h3>
+      <ul>
+        <li>Windows log review and basic correlation logic</li><li>Authentication triage workflow</li><li>SIEM-oriented thinking around suspicious login patterns</li>
+      </ul>
+      <h3>Example artifact</h3>
+      <pre><code>index=wineventlog (EventCode=4625 OR EventCode=4624)
+| eval user=coalesce(TargetUserName, Account_Name)
+| stats count(eval(EventCode=4625)) as failed_count
+        count(eval(EventCode=4624)) as success_count
+        min(_time) as first_seen
+        max(_time) as last_seen
+        by user host
+| where failed_count >= 5 AND success_count >= 1
+| convert ctime(first_seen) ctime(last_seen)</code></pre>
+    </article>
+  </div>
+</body>
+</html>

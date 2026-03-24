@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows Event Investigation Practice | John Lim</title>
+  <meta name="description" content="Windows Event Investigation Practice project page for John Lim." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow"></div>
+  <div class="detail-wrap">
+    <a class="back-link" href="index.html#projects">← Back to Projects</a>
+    <article class="detail-card">
+      <h1>Windows Event Investigation Practice</h1>
+      <p>This page includes a small PowerShell script that filters common Windows Security Event IDs useful for beginner investigation practice.</p>
+      <h3>What this project shows</h3>
+      <ul>
+        <li>Authentication event review</li><li>Privileged group change visibility</li><li>PowerShell-friendly log filtering</li>
+      </ul>
+      <h3>Example artifact</h3>
+      <pre><code>$ids = 4624,4625,4732
+Get-WinEvent -LogName Security |
+Where-Object { $ids -contains $_.Id } |
+Select-Object TimeCreated, Id, ProviderName, Message |
+Format-Table -AutoSize</code></pre>
+    </article>
+  </div>
+</body>
+</html>
